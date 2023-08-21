@@ -122,5 +122,7 @@ class DetectOverlappingUVs():
             print(s)
 
 if __name__ == "__main__":
-    detector = DetectOverlappingUVs(256, "D:/repos/mcUSD/Cube.usd")
+    # Path to USD file:
+    usdPath = "D:/repos/mcUSD/Example.usd"
+    detector = DetectOverlappingUVs(256, usdPath)
     detector.findOverlaps()
