@@ -1,0 +1,77 @@
+#usda 1.0
+(
+    defaultPrim = "pCube2"
+    metersPerUnit = 0.01
+    upAxis = "Y"
+)
+
+def Xform "pCube2" (
+    kind = "component"
+)
+{
+    double3 xformOp:translate = (1.7421824394846936, 1.0933962744658148, -2.5622296453340523)
+    uniform token[] xformOpOrder = ["xformOp:translate"]
+
+    def Xform "pCubeShape2"
+    {
+        def Mesh "pCubeShape2Shape" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 1, 0, 1, 7, 5, 3, 6, 0, 2, 4]
+            rel material:binding = </initialShadingGroup>
+            point3f[] points = [(-0.5, -0.5, 0.5), (0.5, -0.5, 0.5), (-0.5, 0.5, 0.5), (0.5, 0.5, 0.5), (-0.5, 0.5, -0.5), (0.5, 0.5, -0.5), (-0.5, -0.5, -0.5), (0.5, -0.5, -0.5)]
+            texCoord2f[] primvars:st = [(0.7165887, 0.2463857), (0.81045556, 0.37814677), (0.58482766, 0.34025258), (0.6786945, 0.47201362), (0.45306656, 0.43411946), (0.5469335, 0.56588054), (0.3213055, 0.52798635), (0.41517237, 0.65974736), (0.18954444, 0.62185323), (0.2834113, 0.7536143), (0.90432245, 0.50990784), (0.77256143, 0.6037747), (0.6227218, 0.11462462), (0.49096075, 0.2084915)] (
+                customData = {
+                    dictionary Maya = {
+                        token name = "map1"
+                    }
+                }
+                interpolation = "faceVarying"
+            )
+            int[] primvars:st:indices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 9, 8, 1, 10, 11, 3, 12, 0, 2, 13]
+        }
+    }
+}
+
+def Xform "pPlane2" (
+    kind = "component"
+)
+{
+    double3 xformOp:translate = (-0.057118561164184456, 0.04859538997628299, 0.020672018681969995)
+    uniform token[] xformOpOrder = ["xformOp:translate"]
+
+    def Xform "pPlaneShape2"
+    {
+        def Mesh "pPlaneShape2Shape" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, 0, -0.5), (0.5, 0, 0.5)]
+            int[] faceVertexCounts = [3]
+            int[] faceVertexIndices = [0, 1, 2]
+            rel material:binding = </initialShadingGroup>
+            point3f[] points = [(-0.5, 0, 0.5), (0.5, 0, 0.5), (-0.5, 0, -0.5)]
+            texCoord2f[] primvars:st = [(0.19751397, 0.87081575), (0.40786627, 0.87081575), (0.28392798, 0.636489)] (
+                customData = {
+                    dictionary Maya = {
+                        token name = "map1"
+                    }
+                }
+                interpolation = "faceVarying"
+            )
+            int[] primvars:st:indices = [0, 1, 2]
+        }
+    }
+}
+
+def Material "initialShadingGroup" (
+    kind = "assembly"
+)
+{
+}
+
