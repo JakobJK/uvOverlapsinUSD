@@ -89,15 +89,12 @@ class DetectOverlappingUVs():
                 for _ in range(count):
                     faceUVs.append(uvVals[UVidx[index]])
                     index += 1
-                udim = self._getUDIMfromUV(faceUVs[0])
-                
-                for uv in faceUVs:
-                    uv[0] = uv[0] - int(uv[0])
-                    uv[1] = uv[1] - int(uv[1])
+                udim = self._getUDIMfromUV(faceUVs[0]) 
+                normalizedFaceUVs = [(uv[0] - int(uv[0]), uv[1] - int(uv[1])) for uv in faceUVs]
 
                 if udim not in self.buffers:
                     self.buffers[udim] = self._createBuffer()
-                triangles = self._dumbestFanAlgorithmEver(faceUVs)
+                triangles = self._dumbestFanAlgorithmEver(normalizedFaceUVs)
                 for triangle in triangles:
                     t = sorted(triangle,key=lambda x: x[1])
                     self.paintTriangle(t, self.buffers[udim], idx, primName)
