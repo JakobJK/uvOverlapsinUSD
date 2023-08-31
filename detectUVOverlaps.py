@@ -37,14 +37,14 @@ class DetectOverlappingUVs():
 
     def _fillBuffer(self, y, xStart, xEnd, buffer, faceIndex, primName):
         for x in range(int(xStart), int(xEnd + 1)):
-            pixel = buffer[x + y * self.size]
-            if pixel and pixel[0] != primName:
+            position = buffer[x + y * self.size]
+            if position and position[0] != primName:
                 self.overlaps.add((primName, faceIndex))
-                self.overlaps.add((pixel[0], pixel[1]))
+                self.overlaps.add((position[0], position[1]))
             else:
                 buffer[x + y * self.size] = (primName, faceIndex)
     
-    def paintTriangle(self, UVs, buffer, faceIndex, primName):
+    def _paintTriangle(self, UVs, buffer, faceIndex, primName):
         a, b, c = UVs
         invTSlope1, invTSlope2 = 0.0, 0.0
         invBSlope1, invBSlope2 = 0.0, 0.0
@@ -97,7 +97,7 @@ class DetectOverlappingUVs():
                 triangles = self._dumbestFanAlgorithmEver(normalizedFaceUVs)
                 for triangle in triangles:
                     t = sorted(triangle,key=lambda x: x[1])
-                    self.paintTriangle(t, self.buffers[udim], idx, primName)
+                    self._paintTriangle(t, self.buffers[udim], idx, primName)
         
     def findOverlaps(self):
         self.clear()
